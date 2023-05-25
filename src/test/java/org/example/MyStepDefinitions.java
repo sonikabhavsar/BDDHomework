@@ -1,10 +1,15 @@
 package org.example;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 
-public class MyStepDefinitions {
+import static org.example.BasePage.driver;
+
+public class MyStepDefinitions extends Utils {
     HomePage homePage = new HomePage();
     RegisterPage registerPage = new RegisterPage();
     RegisterResultPage registerResultPage = new RegisterResultPage();
@@ -53,4 +58,67 @@ public class MyStepDefinitions {
     public void iEnterRequiredRegistrationNewDetails() {
         registerPage.enterRegistrationNewDetails();
     }
+
+    @Given("I am on demoNopcommerce homepage")
+    public void iAmOnDemoNopcommerceHomepage() {
+
+    }
+
+    @When("I Click on {string} button")
+    public void iClickOnButton(String button_name) {
+        clickOnElement(By.xpath("//a[text()='"+button_name+" ']"));
+
+
+    }
+
+    @Then("I should be able to verify I am navigated to related page{string} successfully")
+    public void iShouldBeAbleToVerifyIAmNavigatedToRelatedPageSuccessfully(String page_url) {
+        Assert.assertEquals(getCurrentURL(),page_url);
+    }
+
+    @And("I should be able to verify the page title as {string}")
+    public void iShouldBeAbleToVerifyThePageTitleAs(String page_title) {
+        Assert.assertEquals(getTextFromElement(By.tagName("h1")),page_title);
+    }
+
+    @Then("I should able to verify changes that happened after hovering")
+    public void i_should_able_to_verify_changes_that_happened_after_hovering() {
+        
+    }
+
+    @When("I click on subcategory {string} link")
+    public void i_click_on_subcategory_link(String subCategory) {
+        homePage.toVerifySubCategory(subCategory);
+       
+    }
+
+    @Then("I should able to successfully navigate to {string} category")
+    public void i_should_able_to_successfully_navigate_to_category(String subCategoryPage) {
+        homePage.toVerifySubCategoryNavigateSuccessfully(subCategoryPage);
+    }
+
+    @When("I hover over {string} category link")
+    public void iHoverOverCategoryLink(String category) {
+        homePage.hoverOverCategory(category);
+    }
+
+
+
+    @And("I click on {string} button accordingly")
+    public void iClickOnButtonAccordingly(String sub_Category) {
+    homePage.toVerifySubCategory(sub_Category);
+
+    }
+
+    @And("I should be able to verity i am navigated to related page {string} successfully")
+    public void iShouldBeAbleToVerityIAmNavigatedToRelatedPageSuccessfully(String page_url) {
+        Assert.assertEquals(getCurrentURL(),page_url);
+    }
+
+    @Then("I should be able to verify the page title {string} accordingly")
+    public void iShouldBeAbleToVerifyThePageTitleAccordingly(String page_title) {
+        Assert.assertEquals(getTextFromElement(By.tagName("h1")),page_title);
+    }
+
+
 }

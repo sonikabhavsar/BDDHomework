@@ -13,6 +13,7 @@ public class Utils extends BasePage{
         driver.findElement(by).click();
     }
 
+
     public static void typeText(By by, String text) {
         driver.findElement(by).sendKeys(text);
     }
@@ -39,4 +40,11 @@ public class Utils extends BasePage{
        Select select2 =new Select(driver.findElement(by));
         select2.selectByIndex(index);
 }
+public static String getCurrentURL(){
+        return driver.getCurrentUrl();
+
+}
+    public static void clickOnRadioButtonElement(By by) {
+        driver.findElement(by).click();
+    }
 }
